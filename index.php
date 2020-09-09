@@ -1,5 +1,14 @@
-<?php include('./inc/header.php') ?>
+<?php
+include('./inc/header.php');
 
+// Connect to firebase
+require __DIR__ . './vendor/autoload.php';
+
+use Kreait\Firebase\Factory;
+
+$firebase = (new Factory)->withServiceAccount('./secret/task-list-288919-fb74fc557a0f.json');
+$database = $firebase->createDatabase();
+?>
 
 <button type="button" class="btn btn-outline-success mt-5 mb-1 font-weight-bold">&#10010; Task</button>
 
