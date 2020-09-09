@@ -8,6 +8,9 @@ use Kreait\Firebase\Factory;
 
 $firebase = (new Factory)->withServiceAccount('./secret/task-list-288919-fb74fc557a0f.json');
 $database = $firebase->createDatabase();
+
+// Grab Task List
+$taskList = $database->getReference('tasklist')->getValue();
 ?>
 
 <button type="button" class="btn btn-outline-success mt-5 mb-1 font-weight-bold">&#10010; Task</button>
@@ -21,13 +24,15 @@ $database = $firebase->createDatabase();
     </tr>
   </thead>
   <tbody>
-    <tr class="table-primary d-flex">
-      <td class="col-2" scope="row">
-        <button type="button" class="btn btn-outline-info font-weight-bold">Competed</button>
-      </td>
-      <td class="col-5 d-flex align-items-center justify-content-center">Column content</td>
-      <td class="col-5 d-flex align-items-center justify-content-center">Column content</td>
-    </tr>
+    <?php foreach ($taskList as $task) : ?>
+      <tr class="table-primary d-flex">
+        <td class="col-2" scope="row">
+          <button type="button" class="btn btn-outline-info font-weight-bold">Competed</button>
+        </td>
+        <td class="col-5 d-flex align-items-center justify-content-center"><?php echo $task['task'] ?></td>
+        <td class="col-5 d-flex align-items-center justify-content-center"><?php echo $task['notes'] ?></td>
+      </tr>
+    <?php endforeach ?>
   </tbody>
 </table>
 

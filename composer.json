@@ -11,6 +11,7 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "kreait/firebase-php": "^5.0"
+        "kreait/firebase-php": "^5.0",
+        "php": ">= 7.4.0"
     }
 }
